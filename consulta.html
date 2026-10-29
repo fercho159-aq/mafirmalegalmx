@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consulta guiada | MA Firma Legal & Asociados</title>
+<meta name="description" content="Cuéntenos su situación, reciba una orientación preliminar con base en la ley mexicana y agende una llamada con un abogado penalista.">
+<link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14213d; --dark:#0d0d0f; --gold:#b8963e; --gold-light:#d9c38a;
+    --bg:#f6f4ef; --card:#fff; --line:#e3dfd6; --text:#2b2b2b; --muted:#6b6b6b;
+    --ok:#2e7d4f; --warn:#b4541e;
+    --serif:'Libre Baskerville', Georgia, serif; --sans:'Source Sans 3', Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);font-size:17px;color:var(--text);background:var(--bg);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:var(--serif);color:var(--navy);line-height:1.25}
+  button{font:inherit;cursor:pointer}
+  .wrap{width:min(1080px,100% - 40px);margin-inline:auto}
+
+  header{background:#fff;border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:56px}
+  .brand div{font-family:var(--serif);color:var(--navy);font-weight:700;line-height:1.2}
+  .brand small{display:block;font-family:var(--sans);font-weight:400;font-size:.72rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+  .back{font-weight:600;font-size:.95rem;color:var(--navy)}
+  .back:hover{color:var(--gold)}
+
+  main{flex:1;padding:40px 0 70px}
+  .layout{display:grid;grid-template-columns:1fr 300px;gap:30px;align-items:start}
+
+  /* progress */
+  .progress{display:flex;gap:6px;margin-bottom:26px}
+  .progress div{flex:1;text-align:center;font-size:.78rem;font-weight:600;color:var(--muted);padding-top:10px;border-top:4px solid var(--line)}
+  .progress div.done{border-color:var(--gold);color:var(--gold)}
+  .progress div.cur{border-color:var(--navy);color:var(--navy)}
+
+  .card{background:var(--card);border:1px solid var(--line);padding:38px;border-top:4px solid var(--gold)}
+  .card h1{font-size:1.75rem;margin-bottom:8px}
+  .card > p.lead{color:var(--muted);margin-bottom:26px}
+  .step{display:none}
+  .step.active{display:block}
+
+  .options{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .opt{text-align:left;background:#fff;border:1px solid var(--line);padding:18px 20px;transition:.15s;display:flex;gap:14px;align-items:flex-start}
+  .opt:hover{border-color:var(--gold)}
+  .opt.sel{border-color:var(--navy);background:#f3f5fa;box-shadow:inset 0 0 0 1px var(--navy)}
+  .opt .ic{width:40px;height:40px;flex:none;border-radius:50%;background:var(--bg);display:grid;place-items:center;color:var(--gold);font-family:var(--serif);font-weight:700}
+  .opt strong{display:block;color:var(--navy)}
+  .opt span{font-size:.9rem;color:var(--muted)}
+
+  label{display:grid;gap:6px;font-weight:600;font-size:.92rem;color:var(--navy);margin-bottom:16px}
+  input,select,textarea{font:inherit;font-weight:400;padding:11px 12px;border:1px solid #cfcac0;background:#fff;outline:none;width:100%}
+  input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+  textarea{min-height:120px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{border:1px solid #cfcac0;background:#fff;padding:8px 14px;font-size:.9rem;border-radius:999px}
+  .chip.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  .drop{border:2px dashed #cfcac0;padding:26px;text-align:center;color:var(--muted);background:#fbfaf7;cursor:pointer}
+  .drop:hover,.drop.over{border-color:var(--gold);background:#fff}
+  .drop strong{color:var(--navy);display:block}
+  .thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-top:14px}
+  .thumb{position:relative;aspect-ratio:1;border:1px solid var(--line);overflow:hidden;background:#eee}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .thumb button{position:absolute;top:4px;right:4px;width:22px;height:22px;border:0;border-radius:50%;background:rgba(0,0,0,.65);color:#fff;font-size:.8rem;line-height:1}
+
+  .actions{display:flex;justify-content:space-between;gap:12px;margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+  .btn{display:inline-block;padding:12px 26px;font-weight:600;border:2px solid var(--gold);background:var(--gold);color:#fff;transition:.2s}
+  .btn:hover{background:#a3832f;border-color:#a3832f}
+  .btn.ghost{background:transparent;color:var(--navy);border-color:#cfcac0}
+  .btn.ghost:hover{border-color:var(--navy);background:#fff}
+  .btn:disabled{opacity:.45;cursor:not-allowed}
+  .err{color:var(--warn);font-size:.9rem;margin-top:10px;display:none}
+
+  /* orientation */
+  .alert{background:#fff8ec;border-left:4px solid var(--gold);padding:16px 18px;margin-bottom:22px;font-size:.95rem}
+  .alert.red{background:#fdf1ec;border-color:var(--warn)}
+  .ori h2{font-size:1.2rem;margin:26px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .ori ol,.ori ul{padding-left:22px}
+  .ori li{margin-bottom:8px}
+  .law{display:grid;gap:12px}
+  .law div{background:var(--bg);padding:14px 16px;border-left:3px solid var(--navy)}
+  .law strong{display:block;color:var(--navy);font-size:.95rem}
+  .law span{font-size:.92rem;color:#444}
+  .disc{font-size:.83rem;color:var(--muted);margin-top:22px;padding:12px;background:var(--bg)}
+
+  /* calendar */
+  .cal-wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .cal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .cal-head b{font-family:var(--serif);color:var(--navy)}
+  .cal-head button{border:1px solid var(--line);background:#fff;width:34px;height:34px}
+  .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center}
+  .cal .dow{font-size:.75rem;font-weight:600;color:var(--muted);padding:4px 0}
+  .cal button{aspect-ratio:1;border:1px solid transparent;background:transparent;border-radius:6px;font-size:.95rem}
+  .cal button.av{background:#fff;border-color:var(--line);color:var(--navy);font-weight:600}
+  .cal button.av:hover{border-color:var(--gold)}
+  .cal button.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .cal button:disabled{color:#c5c0b5;cursor:default}
+  .slots{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;align-content:start}
+  .slots button{padding:10px;border:1px solid var(--line);background:#fff;font-weight:600;color:var(--navy);border-radius:6px}
+  .slots button:hover{border-color:var(--gold)}
+  .slots button.sel{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .slots .hint{grid-column:1/-1;color:var(--muted);font-size:.92rem}
+
+  /* summary */
+  .sum{list-style:none;border:1px solid var(--line)}
+  .sum li{display:grid;grid-template-columns:140px 1fr;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);font-size:.95rem}
+  .sum li:last-child{border:0}
+  .sum b{color:var(--navy);font-weight:600}
+  .ok{background:#eef7f1;border-left:4px solid var(--ok);padding:16px 18px;margin-bottom:22px}
+  .ok h2{color:var(--ok);font-size:1.2rem;margin-bottom:4px}
+
+  /* side */
+  aside .box{background:#fff;border:1px solid var(--line);padding:22px;margin-bottom:18px}
+  aside h3{font-size:1rem;margin-bottom:10px}
+  aside p,aside li{font-size:.92rem;color:var(--muted)}
+  aside ul{padding-left:18px}
+  aside .dark{background:var(--navy);color:#fff;border:0}
+  aside .dark h3,aside .dark p{color:#fff}
+  aside .dark .btn{margin-top:12px;width:100%;text-align:center}
+  #side-summary li{list-style:none;padding:6px 0;border-bottom:1px dashed var(--line);color:var(--text)}
+  #side-summary b{color:var(--navy)}
+
+  footer{background:var(--dark);color:#8b867c;font-size:.82rem;padding:18px 0;text-align:center}
+
+  @media (max-width:900px){.layout{grid-template-columns:1fr}aside{order:2}.cal-wrap{grid-template-columns:1fr}}
+  @media (max-width:600px){.card{padding:24px 18px}.options,.row{grid-template-columns:1fr}.brand div{display:none}.progress div{font-size:0}.sum li{grid-template-columns:1fr;gap:2px}.actions{flex-direction:column-reverse}.btn{text-align:center}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand"><img src="assets/mark.svg" alt="MA Firma Legal & Asociados"><div>MA Firma Legal<small>& Asociados</small></div></a>
+    <a href="index.html" class="back">← Volver al sitio</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap layout">
+    <div>
+      <div class="progress" id="progress">
+        <div>1. Situación</div><div>2. Detalles</div><div>3. Orientación</div><div>4. Agendar</div><div>5. Confirmar</div>
+      </div>
+
+      <div class="card">
+
+        <!-- PASO 1 -->
+        <section class="step active" data-step="1">
+          <h1>¿Cuál es su situación?</h1>
+          <p class="lead">Seleccione la opción que mejor describa lo que está viviendo. Esto nos permite orientarle de forma más precisa.</p>
+          <div class="options" id="cats"></div>
+          <p class="err" id="err1">Seleccione una opción para continuar.</p>
+          <div class="actions"><span></span><button class="btn" onclick="next()">Continuar →</button></div>
+        </section>
+
+        <!-- PASO 2 -->
+        <section class="step" data-step="2">
+          <h1>Cuéntenos un poco más</h1>
+          <p class="lead">Entre más información nos comparta, mejor podremos orientarle. Todo se maneja bajo secreto profesional.</p>
+          <div id="qs"></div>
+          <label>Describa lo ocurrido con sus palabras
+            <textarea id="desc" placeholder="Qué pasó, cuándo, dónde y quiénes participaron..."></textarea>
+          </label>
+          <label>Fotos o documentos (opcional)
+            <div class="drop" id="drop">
+              <strong>Haga clic o arrastre aquí sus imágenes</strong>
+              Citatorios, denuncias, mensajes, lesiones, documentos. Máximo 6 imágenes.
+              <input type="file" id="file" accept="image/*" multiple hidden>
+            </div>
+          </label>
+          <div class="thumbs" id="thumbs"></div>
+          <p class="err" id="err2">Por favor describa brevemente su situación.</p>
+          <div class="actions"><button class="btn ghost" onclick="prev()">← Atrás</button><button class="btn" onclick="next()">Ver orientación →</button></div>
+        </section>
+
+        <!-- PASO 3 -->
+        <section class="step" data-step="3">
+          <h1>Orientación preliminar</h1>
+          <p class="lead">Con base en lo que nos indicó, esto es lo que establece la ley mexicana y lo que le recomendamos hacer ahora.</p>
+          <div class="ori" id="ori"></div>
+          <p class="disc">Esta orientación es informativa y general; no sustituye la asesoría de un abogado que conozca su expediente. Cada caso tiene particularidades que solo pueden evaluarse en consulta.</p>
+          <div class="actions"><button class="btn ghost" onclick="prev()">← Atrás</button><button class="btn" onclick="next()">Agendar llamada con un abogado →</button></div>
+        </section>
+
+        <!-- PASO 4 -->
+        <section class="step" data-step="4">
+          <h1>Agende una llamada</h1>
+          <p class="lead">Elija el día y la hora en que un abogado penalista le llamará. Duración aproximada: 20 minutos.</p>
+          <div class="cal-wrap">
+            <div>
+              <div class="cal-head"><button onclick="moveMonth(-1)" aria-label="Mes anterior">‹</button><b id="cal-title"></b><button onclick="moveMonth(1)" aria-label="Mes siguiente">›</button></div>
+              <div class="cal" id="cal"></div>
+            </div>
+            <div class="slots" id="slots"><p class="hint">Seleccione un día para ver los horarios disponibles.</p></div>
+          </div>
+          <div class="row" style="margin-top:26px">
+            <label>Su nombre<input id="nombre" required></label>
+            <label>Teléfono (WhatsApp)<input id="tel" type="tel" required placeholder="10 dígitos"></label>
+          </div>
+          <p class="err" id="err4">Seleccione día y hora, e indique su nombre y teléfono.</p>
+          <div class="actions"><button class="btn ghost" onclick="prev()">← Atrás</button><button class="btn" onclick="next()">Revisar y confirmar →</button></div>
+        </section>
+
+        <!-- PASO 5 -->
+        <section class="step" data-step="5">
+          <div class="ok"><h2>Todo listo para confirmar</h2><p>Revise los datos y confirme su cita por WhatsApp. Recibirá respuesta del despacho.</p></div>
+          <ul class="sum" id="sum"></ul>
+          <p class="disc" id="fotos-nota"></p>
+          <div class="actions"><button class="btn ghost" onclick="prev()">← Atrás</button><button class="btn" id="confirm">Confirmar por WhatsApp</button></div>
+        </section>
+
+      </div>
+    </div>
+
+    <aside>
+      <div class="box">
+        <h3>Su consulta</h3>
+        <ul id="side-summary"><li style="color:var(--muted)">Aún no hay datos.</li></ul>
+      </div>
+      <div class="box">
+        <h3>¿Cómo funciona?</h3>
+        <ul>
+          <li>Nos cuenta su situación.</li>
+          <li>Le orientamos según la ley mexicana.</li>
+          <li>Agenda una llamada con un abogado.</li>
+        </ul>
+      </div>
+      <div class="box dark">
+        <h3>¿Es una urgencia?</h3>
+        <p>Si hay una persona detenida en este momento, llámenos de inmediato.</p>
+        <a href="tel:+525561136707" class="btn">Llamar ahora</a>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer><div class="wrap">© <span id="y"></span> MA Firma Legal & Asociados · La información de este sitio no constituye asesoría legal.</div></footer>
+
+<script>
+const WHATSAPP = '5215561136707'; // número del despacho, formato internacional sin "+"
+
+/* ---------- Base de conocimiento (México) ---------- */
+const CATS = {
+  detenido: {
+    t:'Detuvieron a un familiar o a mí', d:'Está detenido en este momento o fue detenido recientemente.', ic:'I',
+    qs:[
+      {id:'cuando', l:'¿Cuándo ocurrió la detención?', chips:['Hace menos de 48 h','Hace más de 48 h','No lo sé']},
+      {id:'donde', l:'¿Dónde se encuentra la persona?', chips:['Ministerio Público / Fiscalía','Separos de policía','Centro penitenciario','No lo sabemos']},
+      {id:'declaro', l:'¿Ya declaró ante la autoridad?', chips:['No','Sí, sin abogado','Sí, con abogado','No lo sé']},
+    ],
+    urgent:true,
+    ley:[
+      ['Art. 16 Constitución', 'Nadie puede ser detenido sin orden judicial, salvo flagrancia o caso urgente. El Ministerio Público tiene máximo 48 horas (96 en delincuencia organizada) para liberar o poner a la persona a disposición del juez.'],
+      ['Art. 20, apartado B, Constitución', 'La persona detenida tiene derecho a conocer de qué se le acusa, a guardar silencio, a una defensa adecuada por abogado y a no ser incomunicada.'],
+      ['Arts. 146–152 Código Nacional de Procedimientos Penales', 'Reglas de la flagrancia y obligación de la policía de informar los derechos del detenido y registrar la detención.'],
+      ['Art. 307–308 CNPP', 'En la audiencia inicial el juez revisa si la detención fue legal (control de detención) y puede ordenar la libertad si no lo fue.'],
+    ],
+    pasos:['No permita que la persona declare sin un abogado defensor presente. Tiene derecho a guardar silencio.','Pida el nombre de la autoridad y el número de carpeta de investigación.','Reúna identificación oficial, comprobante de domicilio y datos de la persona detenida.','Llame de inmediato al despacho: los plazos de 48 horas corren desde la detención.'],
+  },
+  investigado: {
+    t:'Me están investigando o recibí un citatorio', d:'Recibió un citatorio, notificación o sabe que hay una denuncia en su contra.', ic:'II',
+    qs:[
+      {id:'doc', l:'¿Qué documento recibió?', chips:['Citatorio del Ministerio Público','Notificación de un juzgado','Solo me lo dijeron','Otro']},
+      {id:'fecha', l:'¿Tiene fecha para presentarse?', chips:['Sí, en los próximos días','Sí, en más de una semana','No indica fecha']},
+    ],
+    ley:[
+      ['Art. 20, apartado B, Constitución', 'Derecho a la presunción de inocencia, a conocer los hechos que se le imputan y a una defensa adecuada desde el inicio de la investigación.'],
+      ['Art. 113 CNPP', 'Derechos del imputado: acceso a la carpeta de investigación, a no declarar, a ofrecer pruebas y a comunicarse con su defensor.'],
+      ['Art. 218–219 CNPP', 'La investigación es reservada, pero el imputado y su defensor tienen derecho a consultar los registros una vez que es citado.'],
+      ['Art. 191–200 CNPP', 'Existen mecanismos como acuerdos reparatorios y suspensión condicional del proceso que pueden evitar llegar a juicio en ciertos delitos.'],
+    ],
+    pasos:['No acuda a declarar sin abogado; presentarse sin defensa puede perjudicarle.','Conserve el citatorio y cualquier documento recibido; no los pierda ni los altere.','Anote fechas, nombres y datos de contacto de la autoridad.','Evite comunicarse con la persona denunciante o con testigos sobre los hechos.'],
+  },
+  victima: {
+    t:'Fui víctima de un delito', d:'Sufrió un robo, lesiones, amenazas, abuso u otro delito.', ic:'III',
+    qs:[
+      {id:'tipo', l:'¿Qué tipo de delito?', chips:['Robo','Lesiones','Amenazas','Abuso o agresión sexual','Extorsión','Otro']},
+      {id:'denuncia', l:'¿Ya presentó denuncia?', chips:['Sí','No','Lo intenté y no me la tomaron']},
+    ],
+    ley:[
+      ['Art. 20, apartado C, Constitución', 'Derechos de la víctima: recibir asesoría jurídica, coadyuvar con el Ministerio Público, recibir atención médica y psicológica, y obtener la reparación del daño.'],
+      ['Art. 109 CNPP', 'La víctima tiene derecho a ser informada del avance del procedimiento, a intervenir en el juicio y a impugnar las decisiones del Ministerio Público.'],
+      ['Ley General de Víctimas', 'Establece medidas de ayuda, asistencia, protección y reparación integral para las víctimas de delitos.'],
+      ['Art. 221 CNPP', 'La denuncia puede presentarse por cualquier medio; la autoridad no puede negarse a recibirla.'],
+    ],
+    pasos:['Si hay riesgo para su integridad, solicite medidas de protección a la autoridad.','Guarde evidencias: mensajes, fotografías, videos, recibos y nombres de testigos.','Si tiene lesiones, acuda a un médico y conserve el parte o receta.','Presente la denuncia cuanto antes; un abogado puede acompañarle como asesor jurídico de la víctima.'],
+  },
+  economico: {
+    t:'Fraude, estafa o problema económico', d:'Le defraudaron, le acusan de fraude, abuso de confianza o un delito patrimonial.', ic:'IV',
+    qs:[
+      {id:'rol', l:'¿Cuál es su situación?', chips:['Me defraudaron','Me acusan a mí','A mi empresa']},
+      {id:'monto', l:'Monto aproximado involucrado', chips:['Menos de $50,000','$50,000 a $500,000','Más de $500,000','No lo sé']},
+    ],
+    ley:[
+      ['Art. 386 Código Penal Federal', 'Comete fraude quien engañando a alguien o aprovechándose de su error obtiene ilícitamente una cosa o un lucro indebido. La pena depende del monto.'],
+      ['Art. 382 Código Penal Federal', 'Abuso de confianza: disponer de un bien ajeno que se recibió en custodia o para un fin determinado.'],
+      ['Art. 191 CNPP', 'En delitos patrimoniales sin violencia procede el acuerdo reparatorio, que puede extinguir la acción penal si se repara el daño.'],
+      ['Código Penal de su estado', 'Cada entidad federativa tiene su propia regulación de fraude y delitos patrimoniales; el abogado revisará cuál aplica a su caso.'],
+    ],
+    pasos:['Reúna contratos, transferencias, recibos, conversaciones y cualquier prueba del acuerdo y del pago.','No firme convenios ni haga pagos adicionales sin revisarlos con un abogado.','Identifique con claridad a la persona o empresa involucrada (nombre, RFC, domicilio).','Agende una consulta para determinar si procede denuncia penal, vía civil o ambas.'],
+  },
+  familiar: {
+    t:'Violencia familiar o de pareja', d:'Sufre violencia física, psicológica o económica, o le acusan de ello.', ic:'V',
+    qs:[
+      {id:'rol', l:'¿Cuál es su situación?', chips:['Soy la víctima','Me acusan a mí','Es por un familiar']},
+      {id:'riesgo', l:'¿Existe riesgo actual para alguien?', chips:['Sí','No','No estoy seguro(a)']},
+    ],
+    ley:[
+      ['Art. 343 bis Código Penal Federal', 'La violencia familiar incluye actos de poder u omisión física, psicológica, patrimonial, económica o sexual contra un integrante de la familia.'],
+      ['Art. 137 CNPP', 'El Ministerio Público puede ordenar medidas de protección inmediatas: prohibición de acercarse, desocupación del domicilio, vigilancia, entre otras.'],
+      ['Ley General de Acceso de las Mujeres a una Vida Libre de Violencia', 'Prevé órdenes de protección de emergencia y preventivas, que deben otorgarse en un plazo máximo de 8 horas.'],
+      ['Art. 20 Constitución', 'Tanto la víctima como la persona imputada tienen derecho a asesoría y defensa adecuadas durante todo el proceso.'],
+    ],
+    pasos:['Si hay riesgo inmediato, llame al 911 y solicite medidas de protección.','Documente los hechos: fechas, fotografías, mensajes, certificados médicos.','Evite confrontaciones directas; comuníquese a través de su abogado.','Agende una llamada para definir denuncia, medidas de protección o estrategia de defensa.'],
+  },
+  otro: {
+    t:'Otro asunto penal', d:'Amparo, apelación, antecedentes penales u otra consulta.', ic:'VI',
+    qs:[
+      {id:'tema', l:'¿Sobre qué tema?', chips:['Amparo','Apelación de una sentencia','Antecedentes penales','Orden de aprehensión','Otro']},
+    ],
+    ley:[
+      ['Art. 103 y 107 Constitución · Ley de Amparo', 'El amparo protege contra actos de autoridad que violen derechos humanos, incluidas órdenes de aprehensión y detenciones ilegales.'],
+      ['Arts. 456–484 CNPP', 'Regulan los recursos de revocación y apelación contra resoluciones judiciales; existen plazos cortos para interponerlos.'],
+      ['Art. 20 Constitución', 'Garantiza el derecho a una defensa adecuada en cualquier etapa del proceso penal.'],
+    ],
+    pasos:['Reúna todos los documentos relacionados: sentencias, notificaciones, oficios.','Verifique las fechas de notificación: los plazos para recurrir suelen ser de pocos días.','Agende una llamada para que un abogado revise su situación específica.'],
+  },
+};
+
+/* ---------- Estado ---------- */
+const S = { step:1, cat:null, ans:{}, desc:'', fotos:[], fecha:null, hora:null, nombre:'', tel:'' };
+const $ = id => document.getElementById(id);
+
+/* ---------- Paso 1 ---------- */
+Object.entries(CATS).forEach(([k,c]) => {
+  const b = document.createElement('button'); b.className='opt'; b.type='button';
+  b.innerHTML = `<div class="ic">${c.ic}</div><div><strong>${c.t}</strong><span>${c.d}</span></div>`;
+  b.onclick = () => { S.cat=k; S.ans={}; document.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel')); b.classList.add('sel'); $('err1').style.display='none'; side(); };
+  $('cats').appendChild(b);
+});
+
+/* ---------- Paso 2 ---------- */
+function buildQs(){
+  const c = CATS[S.cat]; $('qs').innerHTML='';
+  c.qs.forEach(q => {
+    const l = document.createElement('label'); l.innerHTML = q.l;
+    const ch = document.createElement('div'); ch.className='chips';
+    q.chips.forEach(v => { const b=document.createElement('button'); b.type='button'; b.className='chip'+(S.ans[q.id]===v?' sel':''); b.textContent=v;
+      b.onclick=()=>{ S.ans[q.id]=v; ch.querySelectorAll('.chip').forEach(x=>x.classList.remove('sel')); b.classList.add('sel'); side(); }; ch.appendChild(b); });
+    l.appendChild(ch); $('qs').appendChild(l);
+  });
+}
+const drop=$('drop'), file=$('file');
+drop.onclick=()=>file.click();
+drop.ondragover=e=>{e.preventDefault();drop.classList.add('over')};
+drop.ondragleave=()=>drop.classList.remove('over');
+drop.ondrop=e=>{e.preventDefault();drop.classList.remove('over');addFiles(e.dataTransfer.files)};
+file.onchange=()=>{addFiles(file.files);file.value=''};
+function addFiles(list){
+  [...list].filter(f=>f.type.startsWith('image/')).forEach(f=>{
+    if(S.fotos.length>=6) return;
+    const r=new FileReader(); r.onload=()=>{S.fotos.push({name:f.name,src:r.result});thumbs();side();}; r.readAsDataURL(f);
+  });
+}
+function thumbs(){
+  $('thumbs').innerHTML = S.fotos.map((f,i)=>`<div class="thumb"><img src="${f.src}" alt="${f.name}"><button type="button" onclick="rmFoto(${i})" aria-label="Quitar">×</button></div>`).join('');
+}
+function rmFoto(i){S.fotos.splice(i,1);thumbs();side();}
+
+/* ---------- Paso 3 ---------- */
+function buildOri(){
+  const c = CATS[S.cat];
+  let h = '';
+  if (c.urgent) h += `<div class="alert red"><strong>Situación urgente.</strong> En una detención el tiempo es determinante. Si es posible, llame al despacho ahora mismo además de agendar su llamada.</div>`;
+  if (S.cat==='detenido' && S.ans.declaro==='Sí, sin abogado') h += `<div class="alert"><strong>Importante:</strong> una declaración rendida sin defensor puede ser impugnada. Conforme al art. 20, apartado B, fracción II de la Constitución, la confesión sin defensor carece de valor probatorio.</div>`;
+  if (S.cat==='familiar' && S.ans.riesgo==='Sí') h += `<div class="alert red"><strong>Si hay riesgo inmediato,</strong> llame al 911. Las órdenes de protección de emergencia deben emitirse en un máximo de 8 horas.</div>`;
+  if (S.cat==='investigado' && S.ans.fecha==='Sí, en los próximos días') h += `<div class="alert"><strong>Tiene una fecha próxima.</strong> No acuda sin abogado; agende la llamada para el día más cercano disponible.</div>`;
+  h += `<h2>Lo que dice la ley en su caso</h2><div class="law">${c.ley.map(([a,t])=>`<div><strong>${a}</strong><span>${t}</span></div>`).join('')}</div>`;
+  h += `<h2>Qué hacer ahora</h2><ol>${c.pasos.map(p=>`<li>${p}</li>`).join('')}</ol>`;
+  h += `<h2>Cómo le ayudamos</h2><ul><li>Un abogado penalista revisará lo que nos compartió${S.fotos.length?' y sus '+S.fotos.length+' imagen(es)':''} antes de la llamada.</li><li>En la llamada le explicaremos sus opciones, riesgos y los siguientes pasos.</li><li>Si decide contratarnos, recibirá un presupuesto por escrito.</li></ul>`;
+  $('ori').innerHTML = h;
+}
+
+/* ---------- Paso 4: calendario ---------- */
+const MESES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const HORAS=['09:00','10:00','11:00','12:00','13:00','16:00','17:00','18:00'];
+const hoy=new Date(); hoy.setHours(0,0,0,0);
+const maxDia=new Date(hoy); maxDia.setDate(hoy.getDate()+45);
+let vista=new Date(hoy.getFullYear(),hoy.getMonth(),1);
+function moveMonth(n){vista=new Date(vista.getFullYear(),vista.getMonth()+n,1);drawCal();}
+function drawCal(){
+  $('cal-title').textContent = MESES[vista.getMonth()]+' '+vista.getFullYear();
+  let h = ['L','M','M','J','V','S','D'].map(d=>`<div class="dow">${d}</div>`).join('');
+  const first=(vista.getDay()+6)%7, days=new Date(vista.getFullYear(),vista.getMonth()+1,0).getDate();
+  for(let i=0;i<first;i++) h+='<div></div>';
+  for(let d=1;d<=days;d++){
+    const dt=new Date(vista.getFullYear(),vista.getMonth(),d), wd=dt.getDay();
+    const av = dt>hoy && dt<=maxDia && wd!==0 && wd!==6;
+    const sel = S.fecha && dt.getTime()===S.fecha.getTime();
+    h+=`<button type="button" ${av?'class="av'+(sel?' sel':'')+'" onclick="pickDay('+dt.getTime()+')"':'disabled'}>${d}</button>`;
+  }
+  $('cal').innerHTML=h;
+}
+function pickDay(t){S.fecha=new Date(t);S.hora=null;drawCal();drawSlots();side();}
+function drawSlots(){
+  if(!S.fecha){$('slots').innerHTML='<p class="hint">Seleccione un día para ver los horarios disponibles.</p>';return;}
+  // simulación de disponibilidad: oculta 2 horarios según el día
+  const seed=S.fecha.getDate();
+  $('slots').innerHTML = `<p class="hint">${fmtFecha(S.fecha)}</p>` + HORAS.filter((_,i)=>(i+seed)%4!==0).map(hh=>`<button type="button" class="${S.hora===hh?'sel':''}" onclick="pickHora('${hh}')">${hh}</button>`).join('');
+}
+function pickHora(h){S.hora=h;drawSlots();side();}
+function fmtFecha(d){return d.toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'});}
+drawCal();
+
+/* ---------- Paso 5 ---------- */
+function buildSum(){
+  const c=CATS[S.cat];
+  const rows=[['Situación',c.t]];
+  c.qs.forEach(q=>{ if(S.ans[q.id]) rows.push([q.l.replace('¿','').replace('?',''),S.ans[q.id]]); });
+  rows.push(['Descripción',S.desc],['Imágenes',S.fotos.length? S.fotos.length+' adjunta(s)':'Ninguna'],['Llamada',fmtFecha(S.fecha)+' a las '+S.hora],['Nombre',S.nombre],['Teléfono',S.tel]);
+  $('sum').innerHTML=rows.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('');
+  $('fotos-nota').textContent = S.fotos.length ? 'Al abrir WhatsApp, adjunte las '+S.fotos.length+' imagen(es) que seleccionó para que el abogado las revise antes de la llamada.' : 'Si más adelante tiene documentos o fotos, puede enviarlos por el mismo chat de WhatsApp.';
+}
+$('confirm').onclick=()=>{
+  const c=CATS[S.cat];
+  const det=c.qs.filter(q=>S.ans[q.id]).map(q=>`- ${q.l} ${S.ans[q.id]}`).join('\n');
+  const msg=`Hola, solicito una llamada con un abogado.\n\n*Nombre:* ${S.nombre}\n*Teléfono:* ${S.tel}\n*Situación:* ${c.t}\n${det}\n*Descripción:* ${S.desc}\n*Imágenes:* ${S.fotos.length}\n\n*Llamada solicitada:* ${fmtFecha(S.fecha)} a las ${S.hora}`;
+  try{ localStorage.setItem('mafl_cita',JSON.stringify({...S,fotos:S.fotos.length})); }catch(e){}
+  window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank');
+};
+
+/* ---------- Navegación ---------- */
+function validate(){
+  if(S.step===1 && !S.cat){$('err1').style.display='block';return false;}
+  if(S.step===2){ S.desc=$('desc').value.trim(); if(S.desc.length<10){$('err2').style.display='block';return false;} }
+  if(S.step===4){ S.nombre=$('nombre').value.trim(); S.tel=$('tel').value.trim(); if(!S.fecha||!S.hora||!S.nombre||S.tel.length<8){$('err4').style.display='block';return false;} }
+  document.querySelectorAll('.err').forEach(e=>e.style.display='none');
+  return true;
+}
+function show(n){
+  S.step=n;
+  document.querySelectorAll('.step').forEach(s=>s.classList.toggle('active',+s.dataset.step===n));
+  [...$('progress').children].forEach((d,i)=>{d.className = i+1<n?'done': i+1===n?'cur':'';});
+  if(n===2) buildQs(); if(n===3) buildOri(); if(n===5) buildSum();
+  side(); window.scrollTo({top:0,behavior:'smooth'});
+}
+function next(){ if(validate()) show(S.step+1); }
+function prev(){ show(S.step-1); }
+function side(){
+  const rows=[];
+  if(S.cat) rows.push(['Situación',CATS[S.cat].t]);
+  Object.values(S.ans).forEach(v=>rows.push(['',v]));
+  if(S.fotos.length) rows.push(['Imágenes',S.fotos.length]);
+  if(S.fecha&&S.hora) rows.push(['Llamada',fmtFecha(S.fecha)+' '+S.hora]);
+  $('side-summary').innerHTML = rows.length? rows.map(([a,b])=>`<li>${a?'<b>'+a+':</b> ':''}${b}</li>`).join('') : '<li style="color:var(--muted)">Aún no hay datos.</li>';
+}
+$('y').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>

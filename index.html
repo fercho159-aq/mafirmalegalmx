@@ -1,11 +1,331 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>mafirmalegalmx</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MA Firma Legal & Asociados | Abogados Penalistas</title>
+<meta name="description" content="MA Firma Legal & Asociados. Abogados penalistas. Defensa penal, asesoría y representación en todas las etapas del proceso.">
+<link rel="icon" type="image/svg+xml" href="assets/mark.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#14213d; --navy-2:#1c2b4d; --dark:#0d0d0f;
+    --gold:#b8963e; --gold-light:#d9c38a;
+    --bg:#ffffff; --bg-soft:#f6f4ef; --line:#e3dfd6;
+    --text:#2b2b2b; --muted:#6b6b6b;
+    --serif:'Libre Baskerville', Georgia, serif; --sans:'Source Sans 3', Arial, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-size:17px;color:var(--text);background:var(--bg);line-height:1.65}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.25;color:var(--navy)}
+  .wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+  section{padding:80px 0}
+  .sec-title{text-align:center;max-width:720px;margin:0 auto 50px}
+  .sec-title h2{font-size:2rem;margin-bottom:14px}
+  .sec-title h2::after{content:"";display:block;width:60px;height:3px;background:var(--gold);margin:16px auto 0}
+  .sec-title p{color:var(--muted)}
+  .btn{display:inline-block;padding:13px 28px;font-weight:600;font-size:.95rem;letter-spacing:.03em;border:2px solid var(--gold);background:var(--gold);color:#fff;transition:.2s;cursor:pointer;font-family:var(--sans)}
+  .btn:hover{background:#a3832f;border-color:#a3832f}
+  .btn.outline{background:transparent;color:var(--gold)}
+  .btn.outline:hover{background:var(--gold);color:#fff}
+
+  /* Top bar */
+  .topbar{background:var(--dark);color:#cfcac0;font-size:.85rem;padding:8px 0}
+  .topbar .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  .topbar a:hover{color:var(--gold-light)}
+
+  /* Header */
+  header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:88px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .brand img{height:64px;width:auto}
+  .brand div{font-family:var(--serif);color:var(--navy);font-weight:700;font-size:1.05rem;line-height:1.2}
+  .brand div small{display:block;font-family:var(--sans);font-weight:400;font-size:.75rem;color:var(--gold);letter-spacing:.15em;text-transform:uppercase}
+  .menu{display:flex;gap:30px;font-weight:600;font-size:.95rem}
+  .menu a{padding:6px 0;border-bottom:2px solid transparent}
+  .menu a:hover{border-color:var(--gold);color:var(--navy)}
+  .burger{display:none;background:none;border:0;cursor:pointer;width:40px;height:40px}
+  .burger span{display:block;height:2px;background:var(--navy);margin:7px 8px}
+
+  /* Hero */
+  .hero{background:linear-gradient(rgba(20,33,61,.88),rgba(20,33,61,.88)),var(--navy);color:#fff;padding:100px 0;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;top:50%;transform:translateY(-50%);width:520px;height:520px;background:url(assets/mark.svg) center/contain no-repeat;opacity:.08;pointer-events:none}
+  .hero .wrap{max-width:760px;margin-inline:auto;text-align:center;position:relative}
+  .hero .kicker{color:var(--gold-light);letter-spacing:.2em;text-transform:uppercase;font-size:.85rem;font-weight:600}
+  .hero h1{color:#fff;font-size:clamp(2rem,4.5vw,3.1rem);margin:18px 0 20px}
+  .hero p{font-size:1.15rem;color:#dcdfe6;margin-bottom:34px}
+  .hero .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero .btn.outline{color:#fff;border-color:#fff}
+  .hero .btn.outline:hover{background:#fff;color:var(--navy)}
+
+  /* Intro */
+  .intro .wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .intro h2{font-size:1.9rem;margin-bottom:18px}
+  .intro p{margin-bottom:14px}
+  .intro .logo-box{background:var(--dark);padding:40px;display:grid;place-items:center;border-top:4px solid var(--gold)}
+  .intro .logo-box img{width:80%;max-width:360px}
+
+  /* Services */
+  .services{background:var(--bg-soft)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .srv{background:#fff;border:1px solid var(--line);border-top:3px solid var(--gold);padding:32px 28px}
+  .srv h3{font-size:1.15rem;margin-bottom:10px}
+  .srv p{color:var(--muted);font-size:.97rem}
+
+  /* Values */
+  .values .grid{grid-template-columns:repeat(4,1fr)}
+  .val{text-align:center;padding:10px 16px}
+  .val .n{width:54px;height:54px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;font-family:var(--serif);color:var(--gold);font-weight:700;font-size:1.2rem}
+  .val h3{font-size:1.1rem;margin-bottom:8px}
+  .val p{color:var(--muted);font-size:.95rem}
+
+  /* CTA band */
+  .band{background:var(--navy);color:#fff;padding:50px 0}
+  .band .wrap{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
+  .band h2{color:#fff;font-size:1.6rem;margin-bottom:6px}
+  .band p{color:#cfd4df}
+
+  /* FAQ */
+  .faq{max-width:820px;margin-inline:auto}
+  details{border-bottom:1px solid var(--line)}
+  summary{cursor:pointer;padding:20px 0;font-weight:600;font-size:1.05rem;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--gold);font-size:1.4rem;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{padding:0 0 20px;color:var(--muted)}
+
+  /* Contact */
+  .contact{background:var(--bg-soft)}
+  .contact .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:50px}
+  .contact h2{font-size:1.9rem;margin-bottom:16px}
+  .info{list-style:none;margin-top:24px}
+  .info li{padding:14px 0;border-top:1px solid var(--line)}
+  .info strong{display:block;color:var(--navy);font-size:.85rem;letter-spacing:.08em;text-transform:uppercase}
+  form{background:#fff;border:1px solid var(--line);padding:36px;display:grid;gap:16px}
+  form h3{font-size:1.3rem;margin-bottom:4px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  label{display:grid;gap:6px;font-weight:600;font-size:.9rem;color:var(--navy)}
+  input,select,textarea{font:inherit;font-weight:400;padding:11px 12px;border:1px solid #cfcac0;background:#fff;color:var(--text);outline:none}
+  input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+  textarea{min-height:110px;resize:vertical}
+  .small{font-size:.85rem;color:var(--muted)}
+
+  /* Footer */
+  footer{background:var(--dark);color:#bdb8ae;padding:50px 0 24px;font-size:.93rem}
+  .foot{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+  .foot h4{color:#fff;font-family:var(--serif);margin-bottom:12px;font-size:1rem}
+  .foot img{height:110px;margin-bottom:14px}
+  .foot ul{list-style:none}
+  .foot li{margin-bottom:8px}
+  .foot a:hover{color:var(--gold-light)}
+  .copy{border-top:1px solid #2a2a2e;margin-top:36px;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem;color:#8b867c}
+
+  .wa{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+  .wa svg{width:30px;height:30px;fill:#fff}
+
+  @media (max-width:900px){
+    .menu{display:none;position:absolute;left:0;right:0;top:88px;background:#fff;border-bottom:1px solid var(--line);flex-direction:column;gap:0}
+    .menu.open{display:flex}
+    .menu a{padding:14px 20px;border-bottom:1px solid var(--line)}
+    .burger{display:block}
+    .nav .btn{display:none}
+    .intro .wrap,.contact .wrap{grid-template-columns:1fr;gap:36px}
+    .grid,.values .grid{grid-template-columns:1fr 1fr}
+    .foot{grid-template-columns:1fr}
+    .hero::after{display:none}
+  }
+  @media (max-width:600px){
+    section{padding:60px 0}
+    .grid,.values .grid,.row{grid-template-columns:1fr}
+    .brand div{display:none}
+    form{padding:24px}
+    .topbar .wrap{justify-content:center}
+  }
+</style>
 </head>
 <body>
-  <h1>Hola mundo</h1>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="tel:+525561136707">Tel. +52 1 55 6113 6707</a>
+    <a href="mailto:contacto@mafirmalegal.com">contacto@mafirmalegal.com</a>
+    <span>Lunes a viernes 8:00 – 18:00 · Urgencias 24 h</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap nav">
+    <a href="#" class="brand"><img src="assets/mark.svg" alt="MA Firma Legal & Asociados"><div>MA Firma Legal<small>& Asociados</small></div></a>
+    <nav class="menu" id="menu">
+      <a href="#firma">La firma</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#valores">Compromiso</a>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="consulta.html" class="btn">Consulta guiada</a>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="kicker">Abogados penalistas</p>
+    <h1>Defensa penal seria, responsable y profesional</h1>
+    <p>Cuéntenos su situación, reciba una orientación con base en la ley mexicana y agende una llamada con un abogado. Atención directa y confidencial.</p>
+    <div class="btns">
+      <a href="consulta.html" class="btn">Iniciar consulta guiada</a>
+      <a href="tel:+525561136707" class="btn outline">Llamar ahora</a>
+    </div>
+  </div>
+</section>
+
+<section class="intro" id="firma">
+  <div class="wrap">
+    <div>
+      <h2>Sobre la firma</h2>
+      <p>MA Firma Legal & Asociados es un despacho especializado en Derecho Penal. Atendemos cada asunto con rigor técnico, trato cercano y absoluta reserva.</p>
+      <p>Nuestro trabajo se basa en el estudio detallado de cada caso, la comunicación clara con el cliente y la defensa firme de sus derechos ante las autoridades y los tribunales.</p>
+      <p>Ofrecemos asistencia inmediata ante detenciones y acompañamiento durante toda la investigación y el juicio.</p>
+    </div>
+    <div class="logo-box"><img src="assets/logo.svg" alt="Logo MA Firma Legal & Asociados"></div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>Servicios</h2>
+      <p>Áreas en las que brindamos asesoría y representación legal.</p>
+    </div>
+    <div class="grid">
+      <div class="srv"><h3>Asistencia en detenciones</h3><p>Presencia inmediata ante una detención, verificación de la legalidad del procedimiento y defensa en la primera audiencia.</p></div>
+      <div class="srv"><h3>Defensa en investigación</h3><p>Representación durante la investigación, análisis de pruebas y presentación de escritos y recursos.</p></div>
+      <div class="srv"><h3>Juicio oral</h3><p>Preparación de la estrategia de defensa, interrogatorios, peritos y alegatos ante el tribunal.</p></div>
+      <div class="srv"><h3>Delitos económicos y patrimoniales</h3><p>Fraude, estafa, abuso de confianza, lavado de activos y delitos fiscales, tanto para personas como para empresas.</p></div>
+      <div class="srv"><h3>Representación de víctimas</h3><p>Acompañamiento a víctimas de delitos para que se respeten sus derechos y se obtenga la reparación del daño.</p></div>
+      <div class="srv"><h3>Recursos y amparo</h3><p>Apelación, casación y amparo contra resoluciones que afecten los derechos del cliente.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="values" id="valores">
+  <div class="wrap">
+    <div class="sec-title">
+      <h2>Nuestro compromiso</h2>
+    </div>
+    <div class="grid">
+      <div class="val"><div class="n">1</div><h3>Confidencialidad</h3><p>Toda la información se maneja bajo secreto profesional.</p></div>
+      <div class="val"><div class="n">2</div><h3>Atención directa</h3><p>El cliente trata siempre con el abogado a cargo de su caso.</p></div>
+      <div class="val"><div class="n">3</div><h3>Claridad</h3><p>Explicamos en lenguaje sencillo las opciones y los riesgos.</p></div>
+      <div class="val"><div class="n">4</div><h3>Honorarios por escrito</h3><p>Presupuesto claro antes de iniciar, sin costos ocultos.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <div class="wrap">
+    <div>
+      <h2>¿Necesita asesoría urgente?</h2>
+      <p>Atendemos detenciones y urgencias penales las 24 horas.</p>
+    </div>
+    <a href="tel:+525561136707" class="btn">Llamar: +52 1 55 6113 6707</a>
+  </div>
+</div>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="sec-title"><h2>Preguntas frecuentes</h2></div>
+    <div class="faq">
+      <details><summary>¿Qué debo hacer si detienen a un familiar?</summary><p>No permita que declare sin abogado y comuníquese con nosotros de inmediato. Un abogado acudirá para verificar la legalidad de la detención y preparar la primera audiencia.</p></details>
+      <details><summary>¿La primera consulta tiene costo?</summary><p>Realizamos una evaluación inicial del caso. Las condiciones se indican al momento de agendar la cita.</p></details>
+      <details><summary>¿Cómo se cobran los honorarios?</summary><p>Antes de iniciar entregamos un presupuesto por escrito, con la posibilidad de pagar por etapas del proceso.</p></details>
+      <details><summary>¿Atienden casos en otras ciudades?</summary><p>Sí. Según el caso, podemos asistir de forma presencial o coordinar audiencias a distancia.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div>
+      <h2>Contacto</h2>
+      <p>Escríbanos o llámenos. Le responderemos a la brevedad y con total confidencialidad.</p>
+      <p style="margin-top:14px"><a href="consulta.html" class="btn">Iniciar consulta guiada</a></p>
+      <ul class="info">
+        <li><strong>Teléfono</strong>+52 1 55 6113 6707</li>
+        <li><strong>Correo</strong>contacto@mafirmalegal.com</li>
+        <li><strong>Dirección</strong>Dirección de la oficina, Ciudad</li>
+        <li><strong>Horario</strong>Lunes a viernes 8:00 – 18:00 · Urgencias 24 h</li>
+      </ul>
+    </div>
+    <form id="form">
+      <h3>Solicite una consulta</h3>
+      <div class="row">
+        <label>Nombre<input name="nombre" required></label>
+        <label>Teléfono<input name="telefono" type="tel" required></label>
+      </div>
+      <label>Asunto
+        <select name="tipo">
+          <option>Detención</option><option>Investigación penal</option><option>Juicio oral</option>
+          <option>Delitos económicos</option><option>Víctima de un delito</option><option>Recursos y amparo</option><option>Otro</option>
+        </select>
+      </label>
+      <label>Mensaje<textarea name="mensaje"></textarea></label>
+      <button class="btn" type="submit">Enviar por WhatsApp</button>
+      <p class="small">Su información es confidencial y se utilizará únicamente para contactarlo.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <img src="assets/logo.svg" alt="MA Firma Legal & Asociados">
+        <p>Abogados penalistas. Defensa y asesoría en materia penal con atención directa y confidencial.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul><li><a href="#firma">La firma</a></li><li><a href="#servicios">Servicios</a></li><li><a href="#faq">Preguntas frecuentes</a></li><li><a href="#contacto">Contacto</a></li></ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul><li>+52 1 55 6113 6707</li><li>contacto@mafirmalegal.com</li><li>Dirección de la oficina, Ciudad</li></ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="y"></span> MA Firma Legal & Asociados. Todos los derechos reservados.</span>
+      <span>La información de este sitio es de carácter general y no constituye asesoría legal.</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" id="wa" href="#" aria-label="WhatsApp" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5.3-.5v-.5c-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 2a10 10 0 0 0-8.6 15l-1.4 5 5.2-1.4A10 10 0 1 0 12 2z"/></svg>
+</a>
+
+<script>
+  // Reemplace con el número real (formato internacional sin "+" ni espacios)
+  const WHATSAPP = '5215561136707';
+  const waLink = t => 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(t);
+
+  document.getElementById('y').textContent = new Date().getFullYear();
+  document.getElementById('wa').href = waLink('Hola, necesito asesoría penal.');
+
+  const menu = document.getElementById('menu');
+  document.getElementById('burger').onclick = () => menu.classList.toggle('open');
+  menu.querySelectorAll('a').forEach(a => a.onclick = () => menu.classList.remove('open'));
+
+  document.getElementById('form').onsubmit = e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    window.open(waLink(`Hola, soy ${f.get('nombre')} (${f.get('telefono')}).\nAsunto: ${f.get('tipo')}\n${f.get('mensaje') || ''}`), '_blank');
+  };
+</script>
 </body>
 </html>
