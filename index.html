@@ -398,8 +398,8 @@
     <div>
       <div class="t-card">
         <div class="estrellas">★★★★★</div>
-        <blockquote id="t-texto">“Desde la primera consulta me sentí escuchado y bien orientado. La atención fue profesional y siempre estuvieron disponibles.”</blockquote>
-        <cite id="t-autor">Cliente, CDMX</cite>
+        <blockquote id="t-texto">“Quiero expresar mi más sincero agradecimiento por el excelente servicio que recibí. Desde el primer momento demostró un gran profesionalismo, conocimiento y compromiso con mi caso.”</blockquote>
+        <cite id="t-autor">Estefanía Becerril C. · Reseña de Google</cite>
         <div class="t-dots" id="t-dots"></div>
       </div>
     </div>
@@ -494,10 +494,14 @@
     window.open(waLink(`Hola, soy ${f.get('nombre')} (${f.get('telefono')}).\nAsunto: ${f.get('tipo')}\n${f.get('mensaje') || ''}`), '_blank');
   };
 
+  // Reseñas reales tomadas de la ficha de Google (5.0 ★)
   const TESTIMONIOS = [
-    ['“Desde la primera consulta me sentí escuchado y bien orientado. La atención fue profesional y siempre estuvieron disponibles.”', 'Cliente, CDMX'],
-    ['“Me explicaron mis opciones con claridad y sin tecnicismos. Supe en todo momento cómo iba mi caso.”', 'Cliente, Estado de México'],
-    ['“Respondieron de madrugada cuando más lo necesitábamos y acompañaron a mi familia en todo el proceso.”', 'Cliente, CDMX'],
+    ['“Quiero expresar mi más sincero agradecimiento por el excelente servicio que recibí. Desde el primer momento demostró un gran profesionalismo, conocimiento y compromiso con mi caso.”', 'Estefanía Becerril C. · Reseña de Google'],
+    ['“Excelente experiencia con sus servicios. En todo momento me transmitieron confianza, me brindaron asesoría clara y demostraron amplio conocimiento. Altamente recomendable por la calidad y seriedad de su trabajo.”', 'Lorely Zepeda · Reseña de Google'],
+    ['“Excelente servicio, muy profesional y además muy humano. De verdad agradezco la atención y el interés que mostró en mi caso.”', 'Diego Castro · Reseña de Google'],
+    ['“Excelente atención, honestidad y profesionalismo. Te guía paso a paso durante todo el proceso y da un seguimiento impecable. Ampliamente recomendado.”', 'Ana Marmolejo · Reseña de Google'],
+    ['“Totalmente profesional y muy confiable. Tienen mucho conocimiento y por encima de todo te hablan con la verdad y te explican a detalle.”', 'Yazhira J. Mugica · Reseña de Google'],
+    ['“Muy agradecida con el Lic. Miguel Ángel González por su atención y profesionalismo. Excelente trato y gran disposición para orientar.”', 'Maribel Cortés · Reseña de Google'],
   ];
   const dots = document.getElementById('t-dots');
   let tIdx = 0, tTimer;
