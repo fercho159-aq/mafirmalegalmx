@@ -9,6 +9,27 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LegalService",
+  "name": "MA Firma Legal & Asociados",
+  "description": "Abogados penalistas en Ciudad de México. Defensa penal con atención 24 horas, confidencial y estratégica.",
+  "url": "https://mafirmalegalmx.vercel.app",
+  "telephone": "+525561136707",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ignacio Zaragoza 5, Año de Juárez",
+    "addressLocality": "Iztapalapa, Ciudad de México",
+    "addressRegion": "CDMX",
+    "postalCode": "09780",
+    "addressCountry": "MX"
+  },
+  "openingHours": "Mo-Su 00:00-24:00",
+  "priceRange": "$$",
+  "sameAs": ["https://maps.google.com/?cid=937065001526612628"]
+}
+</script>
 <style>
   :root{
     --verde:#0e2117; --verde-2:#143022; --verde-3:#1c3f2d;
@@ -137,6 +158,14 @@
   .t-dots{display:flex;gap:8px;margin-top:22px}
   .t-dots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(255,255,255,.3);cursor:pointer;padding:0}
   .t-dots button.on{background:var(--dorado-claro)}
+  .g-badge{margin-top:26px;background:var(--verde-2);border:1px solid var(--linea-verde);border-radius:12px;padding:20px 22px;display:inline-block}
+  .g-badge .fila{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+  .g-badge .estrellas-g{color:var(--dorado-claro);letter-spacing:3px}
+  .g-badge b{color:#fff;font-size:1.05rem}
+  .g-badge span{color:#c5c0b0;font-size:.9rem}
+  .g-badge .ligas{display:flex;gap:10px;flex-wrap:wrap}
+  .g-badge .ligas a{font-size:.85rem;font-weight:700;color:var(--dorado-claro);border:1px solid var(--linea-verde);border-radius:999px;padding:8px 16px;transition:.2s}
+  .g-badge .ligas a:hover{background:var(--verde-3);border-color:var(--dorado)}
 
   /* ---------- FAQ + contacto ---------- */
   .final{background:var(--crema)}
@@ -358,6 +387,13 @@
     <div>
       <span class="eyebrow">Testimonios</span>
       <h2>Lo más importante <em>es tu confianza</em></h2>
+      <div class="g-badge">
+        <div class="fila"><span class="estrellas-g">★★★★★</span><b>5.0 en Google</b><span>· 107 opiniones</span></div>
+        <div class="ligas">
+          <a href="https://www.google.com/search?q=MA+Firma+Legal+%26+Asociados+Iztapalapa#lrd=0x85ce0359b6350af7:0xd011fa77371d294,1,,,," target="_blank" rel="noopener">Leer reseñas en Google</a>
+          <a href="https://www.google.com/search?q=MA+Firma+Legal+%26+Asociados+Iztapalapa#lrd=0x85ce0359b6350af7:0xd011fa77371d294,3,,,," target="_blank" rel="noopener">Escribir una opinión</a>
+        </div>
+      </div>
     </div>
     <div>
       <div class="t-card">
@@ -425,8 +461,9 @@
         <ul>
           <li><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+525561136707">+52 1 55 6113 6707</a></li>
           <li><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg><a href="mailto:contacto@mafirmalegal.com">contacto@mafirmalegal.com</a></li>
-          <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Dirección de la oficina, Ciudad de México</span></li>
-          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Lunes a viernes 8:00 – 18:00 · Urgencias 24 h</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><a href="https://maps.google.com/?cid=937065001526612628" target="_blank" rel="noopener">Ignacio Zaragoza 5, Año de Juárez, Iztapalapa, 09780 CDMX</a></li>
+          <li><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Atención 24 horas, los 365 días del año</span></li>
+          <li><svg viewBox="0 0 24 24"><path d="m12 3 2.5 5.3 5.5.7-4 4 1 5.7-5-2.8-5 2.8 1-5.7-4-4 5.5-.7z"/></svg><a href="https://www.google.com/search?q=MA+Firma+Legal+%26+Asociados+Iztapalapa#lrd=0x85ce0359b6350af7:0xd011fa77371d294,1,,,," target="_blank" rel="noopener">★ 5.0 en Google · 107 opiniones</a></li>
         </ul>
       </div>
     </div>
