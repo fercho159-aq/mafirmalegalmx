@@ -161,9 +161,20 @@
   .t-card .estrellas{color:var(--dorado-claro);letter-spacing:4px;font-size:1rem;margin-bottom:14px}
   .t-card blockquote{font-family:var(--serif);font-style:italic;font-size:1.12rem;line-height:1.6;color:#f0ecdf}
   .t-card cite{display:block;margin-top:16px;font-style:normal;font-size:.85rem;color:var(--dorado-claro);letter-spacing:.08em}
-  .t-dots{display:flex;gap:8px;margin-top:22px}
-  .t-dots button{width:9px;height:9px;border-radius:50%;border:0;background:rgba(255,255,255,.3);cursor:pointer;padding:0}
-  .t-dots button.on{background:var(--dorado-claro)}
+  .t-card{touch-action:pan-y;user-select:none;-webkit-user-select:none;overflow:hidden}
+  .t-cuerpo{transition:transform .35s ease,opacity .35s ease}
+  .t-cuerpo.sale-izq{transform:translateX(-40px);opacity:0}
+  .t-cuerpo.sale-der{transform:translateX(40px);opacity:0}
+  .t-cuerpo.arrastre{transition:none}
+  .t-nav{display:flex;align-items:center;gap:14px;margin-top:22px}
+  .t-dots{display:flex;gap:4px}
+  .t-dots button{width:22px;height:22px;border:0;background:none;cursor:pointer;padding:0;display:grid;place-items:center}
+  .t-dots button::after{content:'';width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .2s,width .2s}
+  .t-dots button.on::after{background:var(--dorado-claro);width:20px;border-radius:5px}
+  .t-flecha{width:38px;height:38px;border-radius:50%;border:1px solid var(--linea-verde);background:transparent;color:var(--dorado-claro);font-size:1.5rem;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0 0 3px}
+  .t-flecha:hover{background:rgba(255,255,255,.06)}
+  .t-hint{display:none;margin-top:12px;font-size:.8rem;color:rgba(255,255,255,.55);letter-spacing:.04em}
+  @media (hover:none){.t-hint{display:block}}
   .g-badge{margin-top:26px;background:var(--verde-2);border:1px solid var(--linea-verde);border-radius:12px;padding:20px 22px;display:inline-block}
   .g-badge .fila{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
   .g-badge .estrellas-g{color:var(--dorado-claro);letter-spacing:3px}
@@ -409,9 +420,16 @@
     <div>
       <div class="t-card">
         <div class="estrellas">★★★★★</div>
-        <blockquote id="t-texto">“Quiero expresar mi más sincero agradecimiento por el excelente servicio que recibí. Desde el primer momento demostró un gran profesionalismo, conocimiento y compromiso con mi caso.”</blockquote>
-        <cite id="t-autor">Estefanía Becerril C. · Reseña de Google</cite>
-        <div class="t-dots" id="t-dots"></div>
+        <div class="t-cuerpo" id="t-cuerpo">
+          <blockquote id="t-texto">“Quiero expresar mi más sincero agradecimiento por el excelente servicio que recibí. Desde el primer momento demostró un gran profesionalismo, conocimiento y compromiso con mi caso.”</blockquote>
+          <cite id="t-autor">Estefanía Becerril C. · Reseña de Google</cite>
+        </div>
+        <div class="t-nav">
+          <button class="t-flecha" id="t-prev" aria-label="Opinión anterior">&#8249;</button>
+          <div class="t-dots" id="t-dots"></div>
+          <button class="t-flecha" id="t-next" aria-label="Siguiente opinión">&#8250;</button>
+        </div>
+        <p class="t-hint">Desliza para ver más opiniones &rarr;</p>
       </div>
     </div>
   </div>
@@ -523,21 +541,68 @@
     ['“Muy agradecida con el Lic. Miguel Ángel González por su atención y profesionalismo. Excelente trato y gran disposición para orientar.”', 'Maribel Cortés · Reseña de Google'],
   ];
   const dots = document.getElementById('t-dots');
+  const tCuerpo = document.getElementById('t-cuerpo');
+  const N = TESTIMONIOS.length;
   let tIdx = 0, tTimer;
   TESTIMONIOS.forEach((_, i) => {
     const b = document.createElement('button');
     b.setAttribute('aria-label', 'Testimonio ' + (i + 1));
-    b.onclick = () => { showT(i); clearInterval(tTimer); tTimer = setInterval(() => showT(tIdx + 1), 7000); };
+    b.onclick = () => irA(i, i < tIdx ? -1 : 1);
     dots.appendChild(b);
   });
-  function showT(i) {
-    tIdx = i % TESTIMONIOS.length;
+  function pintar() {
     document.getElementById('t-texto').textContent = TESTIMONIOS[tIdx][0];
     document.getElementById('t-autor').textContent = TESTIMONIOS[tIdx][1];
     [...dots.children].forEach((d, j) => d.classList.toggle('on', j === tIdx));
   }
-  showT(0);
-  tTimer = setInterval(() => showT(tIdx + 1), 7000);
+  // dir 1 = siguiente (sale a la izquierda), -1 = anterior
+  function showT(i, dir = 1) {
+    tCuerpo.classList.remove('arrastre');
+    tCuerpo.style.transform = '';
+    tCuerpo.className = 't-cuerpo ' + (dir > 0 ? 'sale-izq' : 'sale-der');
+    setTimeout(() => {
+      tIdx = ((i % N) + N) % N;
+      pintar();
+      tCuerpo.className = 't-cuerpo arrastre ' + (dir > 0 ? 'sale-der' : 'sale-izq');
+      void tCuerpo.offsetWidth;
+      tCuerpo.className = 't-cuerpo';
+    }, 220);
+  }
+  function reiniciar() { clearInterval(tTimer); tTimer = setInterval(() => showT(tIdx + 1, 1), 7000); }
+  function irA(i, dir) { showT(i, dir); reiniciar(); }
+  document.getElementById('t-prev').onclick = () => irA(tIdx - 1, -1);
+  document.getElementById('t-next').onclick = () => irA(tIdx + 1, 1);
+
+  // Deslizar con el dedo (o arrastrar con el mouse) sobre la tarjeta
+  const tCard = tCuerpo.closest('.t-card');
+  let x0 = null, y0 = 0, dx = 0;
+  tCard.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    x0 = e.clientX; y0 = e.clientY; dx = 0;
+    tCuerpo.classList.add('arrastre');
+  });
+  tCard.addEventListener('pointermove', e => {
+    if (x0 === null) return;
+    dx = e.clientX - x0;
+    if (Math.abs(dx) > Math.abs(e.clientY - y0)) {
+      tCuerpo.style.transform = `translateX(${dx * 0.6}px)`;
+      tCuerpo.style.opacity = 1 - Math.min(Math.abs(dx) / 300, 0.6);
+    }
+  });
+  function soltar() {
+    if (x0 === null) return;
+    x0 = null;
+    tCuerpo.classList.remove('arrastre');
+    tCuerpo.style.opacity = '';
+    if (Math.abs(dx) > 45) irA(tIdx + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1);
+    else tCuerpo.style.transform = '';
+  }
+  tCard.addEventListener('pointerup', soltar);
+  tCard.addEventListener('pointercancel', soltar);
+  tCard.addEventListener('pointerleave', soltar);
+
+  pintar();
+  reiniciar();
 </script>
 </body>
 </html>
