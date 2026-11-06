@@ -99,7 +99,7 @@
   .areas-head{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end;margin-bottom:44px}
   .areas-head h2{font-size:clamp(1.8rem,3.6vw,2.5rem)}
   .areas-head p{color:var(--suave)}
-  .areas-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+  .areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
   .area{background:var(--blanco);border:1px solid var(--linea);border-radius:12px;padding:26px 20px;display:flex;flex-direction:column;gap:10px;transition:.25s}
   .area:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(20,48,34,.12);border-color:var(--dorado)}
   .area .ic{width:52px;height:52px;border:1.5px solid var(--dorado);border-radius:50%;display:grid;place-items:center;margin-bottom:6px}
@@ -113,6 +113,7 @@
   .area.destacada h3{color:#fff}
   .area.destacada p{color:#d8d3c3}
   .area.destacada .mas{color:var(--dorado-claro)}
+  .area.destacada.empresa{background:linear-gradient(rgba(10,26,18,.72),rgba(10,26,18,.9)),url(assets/foto-despacho.jpg) center 75%/cover}
 
   /* ---------- Banda compromiso ---------- */
   .banda{background:var(--verde);color:#fff;padding:54px 0}
@@ -234,8 +235,7 @@
 
   /* ---------- Responsive ---------- */
   @media (max-width:1000px){
-    .areas-grid{grid-template-columns:repeat(3,1fr)}
-    .area.destacada{grid-column:span 3}
+    .areas-grid{grid-template-columns:repeat(2,1fr)}
     .banda-grid,.pq-grid{grid-template-columns:1fr 1fr}
     .sobre-grid,.testi-grid,.final-grid{grid-template-columns:1fr;gap:38px}
     .areas-head{grid-template-columns:1fr;gap:10px}
@@ -329,6 +329,12 @@
         <h3>Derecho Penal</h3>
         <p>Defensa en detenciones, investigación, audiencia inicial, juicio oral, recursos, amparo y asesoría a víctimas.</p>
         <a class="mas" href="penal.html">Ver más →</a>
+      </article>
+      <article class="area destacada empresa">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-5h6v5M9 9h.01M12 9h.01M15 9h.01M9 12.5h.01M12 12.5h.01M15 12.5h.01"/></svg></div>
+        <h3>Derecho Penal Empresarial</h3>
+        <p>Protección jurídica y representación penal para empresas: robo hormiga, fraudes, denuncias y litigio en todas las etapas.</p>
+        <a class="mas" href="empresarial.html">Ver más →</a>
       </article>
       <article class="area">
         <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 3H6v18h12V7z"/><path d="M14 3v4h4M9 13h6M9 17h6M9 9h2"/></svg></div>

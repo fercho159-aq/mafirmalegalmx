@@ -39,6 +39,8 @@ header{position:sticky;top:0;z-index:50;background:var(--verde);border-bottom:1p
 
 /* Portada del área */
 .area-hero{background:linear-gradient(100deg,var(--verde) 48%,rgba(14,33,23,.78) 70%,rgba(14,33,23,.45)),url(foto-justicia.jpg) right center/auto 100% no-repeat;background-color:var(--verde);color:#fff;padding:70px 0 64px}
+.area-hero.empresa{background:linear-gradient(100deg,var(--verde) 48%,rgba(14,33,23,.8) 70%,rgba(14,33,23,.5)),url(foto-despacho.jpg) right bottom/auto 112% no-repeat;background-color:var(--verde)}
+.pasos-grid.tres{grid-template-columns:repeat(3,1fr)}
 .area-hero .wrap{max-width:720px;margin-left:calc((100% - min(1140px,100% - 40px))/2)}
 .volver{display:inline-block;font-size:.88rem;color:var(--dorado-claro);margin-bottom:22px;border-bottom:1px solid transparent}
 .volver:hover{border-color:var(--dorado-claro)}
@@ -113,7 +115,8 @@ footer{background:#0a1911;color:#b8b3a3;padding:56px 0 26px;font-size:.93rem}
 @media (prefers-reduced-motion:reduce){.wa-float{animation:none}}
 
 @media (max-width:1000px){
-  .area-hero{background:var(--verde)}
+  .area-hero,.area-hero.empresa{background:var(--verde)}
+  .pasos-grid.tres{grid-template-columns:1fr}
   .area-hero .wrap{margin-inline:auto}
   .pasos-grid{grid-template-columns:1fr 1fr}
 }
